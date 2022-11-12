@@ -1,0 +1,8 @@
+{
+    "url": "https://www.google.com",
+    "cookies": {
+        "key": "value"
+    },
+    "depth": 1,
+    "dw_from_other": true
+}
