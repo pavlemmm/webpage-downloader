@@ -1,9 +1,7 @@
-import os
-import re
-import json
-import requests
-from urllib.parse import urljoin, urlparse
+import os, re, json, requests
 from bs4 import BeautifulSoup
+from urllib.parse import urljoin, urlparse
+from http.cookies import SimpleCookie
 
 def clearFileName(file_name): # Removes special chars from file name
     return re.sub('[?\/\\ ].+', '', file_name)
@@ -32,7 +30,7 @@ def downloadPage(url: str, file_path: str, depth: int):
 
                     with open(file_path, "wb") as f:
                         f.write(data.content)
-                elif dw_from_other:
+                elif dw_other:
                     if not inn_p.scheme:
                         inn = f'http:{inn}'
 
@@ -88,9 +86,15 @@ with open('config.json') as f:
     cfg = json.load(f)
 
 start_url = cfg['url']
-cookies = cfg['cookies']
+
+simple_cookie = SimpleCookie()
+with open('cookies.txt') as f:
+    simple_cookie.load(f.read())
+
+cookies = {k: v.value for k, v in simple_cookie.items()}
+
 depth = cfg['depth']
-dw_from_other = cfg['dw_from_other']
+dw_other = cfg['dw_from_other_sources']
 
 start_url_p = urlparse(start_url)
 
