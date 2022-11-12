@@ -1,5 +1,9 @@
 {
-    "url": "https://www.google.com",
-    "depth": 2,
-    "dw_from_other_sources": true
+    "url": "https://www.fixpectus.com/products/membership-site",
+    "depth": 15,
+    "dw_from_other_sources": true,
+    "wait_between_requests": {"min": 0.3, "max": 0.5},
+    "allowed_paths": [
+        "https://www.fixpectus.com/products/membership-site/categories/1085488.*"
+    ]
 }
