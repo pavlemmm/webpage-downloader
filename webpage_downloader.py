@@ -26,6 +26,7 @@ def downloadPage(url: str, file_path: str, depth: int):
             if res.has_attr(inner):
                 inn = res[inner]
                 inn_p = urlparse(inn)
+
                 if not inn_p.netloc:
                     file_name = clearFileName(os.path.basename(inn))
                     file_path = os.path.join(files_folder, file_name)
@@ -120,7 +121,7 @@ file_name = start_url_p.netloc + clearUrl(start_url_p.path) + '.html'
 file_path = os.path.join(files_folder, file_name)
 
 s = requests.Session()
-s.headers.update({'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:75.0) Gecko/20100101 Firefox/75.0'})
+# s.headers.update({'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:75.0) Gecko/20100101 Firefox/75.0'})
 s.cookies.update(cookies)
 
 downloadPage(start_url, file_path, depth=depth)
